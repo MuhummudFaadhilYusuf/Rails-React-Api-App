@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import axios from "axios";
+
+import TodoItems from "./TodoItems";
+import TodoItem from "./TodoItem";
 class TodoApp extends React.Component {
     constructor(props){
         super(props);
@@ -24,9 +27,18 @@ class TodoApp extends React.Component {
             console.log(error);
         });
     }
-    render() {
-        return <p>TodoApp</p>;
+    render(){
+        return (
+            <TodoItems>
+                {this.state.todoItems.map(todoItem => (
+                    <TodoItem key={todoItem.id} todoItem={todoItem}/>
+                ))}
+            </TodoItems>
+        );
     }
+    // render() {
+    //     return <p>TodoApp</p>;
+    // }
 }
 
 document.addEventListener('turbolinks:load', () => {
